@@ -19,6 +19,14 @@ export const Wrapper = styled(Div)`
   height: 100%;
   background-color: ${BACKGROUND};
   display: flex;
+
+  @media (min-width: 768px) {
+    flex-direction: row-reverse;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 type ArrayItemProps = {
@@ -38,13 +46,18 @@ export const ArrayElement = styled.div<ArrayItemProps>`
 export const ToolBar = styled(Div)`
   background: ${BACKGROUND_SECONDARY};
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 30px;
   height: 100%;
   width: 250px;
   border-right: 3px solid rgb(9 64 103);
+  flex-direction: column;
+
+  @media (max-width: 768px) {
+    border-right: none;
+    width: 100%;
+  }
 `;
 
 export const ArrayWrapper = styled(Div)`

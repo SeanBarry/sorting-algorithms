@@ -3,7 +3,13 @@ import * as S from "./App.styles";
 import { ArrayItem, SortingAlgorithm } from "./types";
 import { MAX_ARRAY_SIZE, MAX_SPEED } from "./constants";
 import React, { useEffect, useRef, useState } from "react";
-import { bubbleSort, createArrayItem, insertionSort, selectionSort, shuffle } from "./utils";
+import {
+  bubbleSort,
+  createArrayItem,
+  insertionSort,
+  selectionSort,
+  shuffle,
+} from "./utils";
 
 import { Normalize } from "styled-normalize";
 
@@ -78,18 +84,30 @@ const App = () => {
     <>
       <Normalize />
       <S.Wrapper>
+        <S.Rows>
+          <S.ArrayWrapper ref={mainContentWidth}>
+            {array.map((w) => (
+              <S.ArrayElement key={w.value} element={w} />
+            ))}
+          </S.ArrayWrapper>
+          <S.Description>{getAlgorithmDescription()}</S.Description>
+        </S.Rows>
         <S.ToolBar>
           <S.Select
             value={sortingAlgorithm}
             onChange={(event) => {
-              const {value} = event.target
-              const typedValue = value as SortingAlgorithm
+              const { value } = event.target;
+              const typedValue = value as SortingAlgorithm;
               shuffleArray(arraySize);
               setSortingAlgorithm(typedValue);
             }}
             disabled={inProgress}
           >
-            {Object.values(SortingAlgorithm).map(w => (<option key={w} value={w}>{w}</option>))}
+            {Object.values(SortingAlgorithm).map((w) => (
+              <option key={w} value={w}>
+                {w}
+              </option>
+            ))}
           </S.Select>
           <S.SliderWrapper>
             <S.SliderDescription>Array Size</S.SliderDescription>
@@ -128,17 +146,16 @@ const App = () => {
             Sort
           </S.Button>
           <S.Credits>
-            Made by <S.Link href="https://twitter.com/seanbarryuk" target="_new" rel="noopener nofollow">@SeanBarryUK</S.Link>
+            Made by{" "}
+            <S.Link
+              href="https://twitter.com/seanbarryuk"
+              target="_new"
+              rel="noopener nofollow"
+            >
+              @SeanBarryUK
+            </S.Link>
           </S.Credits>
         </S.ToolBar>
-        <S.Rows>
-          <S.ArrayWrapper ref={mainContentWidth}>
-            {array.map((w) => (
-              <S.ArrayElement key={w.value} element={w} />
-            ))}
-          </S.ArrayWrapper>
-          <S.Description>{getAlgorithmDescription()}</S.Description>
-        </S.Rows>
       </S.Wrapper>
     </>
   );
