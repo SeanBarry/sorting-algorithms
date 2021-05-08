@@ -127,6 +127,9 @@ const App = () => {
           <S.Button primary disabled={inProgress} onClick={sortArray}>
             Sort
           </S.Button>
+          <S.Credits>
+            Made by <S.Link href="https://twitter.com/seanbarryuk" target="_new" rel="noopener nofollow">@SeanBarryUK</S.Link>
+          </S.Credits>
         </S.ToolBar>
         <S.Rows>
           <S.ArrayWrapper ref={mainContentWidth}>

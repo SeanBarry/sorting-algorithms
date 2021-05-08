@@ -57,6 +57,24 @@ export const ArrayWrapper = styled(Div)`
   justify-content: center;
 `;
 
+export const Credits = styled.p`
+  font-family: sans-serif;
+  font-size: 12px;
+  color: #fff;
+`;
+
+export const Link = styled.a`
+  color: ${SECONDARY};
+  font-weight: bold;
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: #bc2944;
+  }
+`;
+
 export const Button = styled.button<{ primary?: boolean }>`
   background: ${({ primary }) => (primary ? SECONDARY : BACKGROUND)};
   width: 100%;
