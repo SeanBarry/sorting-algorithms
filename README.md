@@ -8,4 +8,4 @@ This is a visualisation tool built with React.js to show some common sorting alg
 - [Selection Sort](https://en.wikipedia.org/wiki/Selection_sort)
 - [Insertion Sort](https://en.wikipedia.org/wiki/Insertion_sort)
 
-[Link to the algorithms on my website](https://sorting-algorithms.seanbarry.dev)
+[Link to the algorithms visualiser](https://seanbarry.github.io/sorting-algorithms/)
