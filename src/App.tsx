@@ -4,11 +4,11 @@ import { ArrayItem, SortingAlgorithm } from "./types";
 import { MAX_ARRAY_SIZE, MAX_SPEED } from "./constants";
 import {
   bubbleSort,
-  createArrayItem,
   insertionSort,
+  quickSort,
   selectionSort,
-  shuffle,
-} from "./utils";
+} from "./algorithms";
+import { createArrayItem, shuffle } from "./utils";
 import { useEffect, useRef, useState } from "react";
 
 import { Normalize } from "styled-normalize";
@@ -56,6 +56,9 @@ const App = () => {
       case SortingAlgorithm.InsertionSort:
         await insertionSort(array, setArray, sortSpeed);
         break;
+      case SortingAlgorithm.QuickSort:
+        await quickSort(array, setArray, sortSpeed);
+        break;
     }
 
     setInProgress(false);
@@ -75,7 +78,7 @@ const App = () => {
         return (
           <>
             <p>
-              <strong>Bubble Sort - O(n^2) average time complexity.</strong>
+              <strong>Bubble Sort - O(N^2) average time complexity.</strong>
             </p>
             <p>
               Bubble sort repeatedly iterates over a list from left to right. At
@@ -90,7 +93,7 @@ const App = () => {
         return (
           <>
             <p>
-              <strong>Insertion Sort - O(n^2) average time complexity.</strong>
+              <strong>Insertion Sort - O(N^2) average time complexity.</strong>
             </p>
             <p>
               Insertion sort designates a sorted output list at the start of the
@@ -107,7 +110,7 @@ const App = () => {
         return (
           <>
             <p>
-              <strong>Selection Sort - O(n^2) average time complexity.</strong>
+              <strong>Selection Sort - O(N^2) average time complexity.</strong>
             </p>
             <p>
               Selection sort splits the list in to a sorted list and an unsorted
@@ -120,13 +123,34 @@ const App = () => {
             </p>
           </>
         );
+      case SortingAlgorithm.QuickSort:
+        return (
+          <>
+            <p>
+              <strong>
+                Quick Sort - O(N(log(N))) average time complexity.
+              </strong>
+            </p>
+            <p>
+              Quick sort creates a pivot index in the list. In this example, the
+              pivot is always the first element. It then iterates over the list,
+              reodering elements by swapping the positions of elements that have
+              a lower value than the pivot with values that are greater than the
+              pivot's value. Eventually a point is reached where all values
+              before are less than the pivot, and all values after are greater
+              than the pivot. The pivot then swaps positions to this point, and
+              it is in its final sorted position. The algorithm is then
+              recursively applied to both remaining lists on each side of the
+              pivot, beginning with whichever is the smallest.
+            </p>
+          </>
+        );
     }
   };
 
   const isAlgoDisabled = (key: SortingAlgorithm) => {
     switch (key) {
       case SortingAlgorithm.MergeSort:
-      case SortingAlgorithm.QuickSort:
       case SortingAlgorithm.HeapSort:
       case SortingAlgorithm.RadixSort:
       case SortingAlgorithm.BogoSort:

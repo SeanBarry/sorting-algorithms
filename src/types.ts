@@ -2,7 +2,7 @@ export enum SortingAlgorithm {
   BubbleSort = "Bubble Sort",
   InsertionSort = "Insertion Sort",
   SelectionSort = "Selection Sort",
-  QuickSort = "Quick Sort (Coming soon)",
+  QuickSort = "Quick Sort",
   MergeSort = "Merge Sort (Coming soon)",
   HeapSort = "Heap Sort (Coming soon)",
   RadixSort = "Radix Sort (Coming soon)",
@@ -11,7 +11,5 @@ export enum SortingAlgorithm {
 
 export type ArrayItem = {
   value: number;
-  isSorted: boolean;
-  inProgress: boolean;
   colour: string;
 };
