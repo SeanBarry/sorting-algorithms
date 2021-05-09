@@ -189,7 +189,7 @@ export const Rows = styled.div`
   flex-direction: column;
 `;
 
-export const Description = styled.p`
+export const Description = styled.div`
   font-size: 16px;
   font-family: sans-serif;
   line-height: 1.8;

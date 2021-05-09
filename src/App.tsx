@@ -2,7 +2,6 @@ import * as S from "./App.styles";
 
 import { ArrayItem, SortingAlgorithm } from "./types";
 import { MAX_ARRAY_SIZE, MAX_SPEED } from "./constants";
-import React, { useEffect, useRef, useState } from "react";
 import {
   bubbleSort,
   createArrayItem,
@@ -10,6 +9,7 @@ import {
   selectionSort,
   shuffle,
 } from "./utils";
+import { useEffect, useRef, useState } from "react";
 
 import { Normalize } from "styled-normalize";
 
@@ -72,11 +72,67 @@ const App = () => {
   const getAlgorithmDescription = () => {
     switch (sortingAlgorithm) {
       case SortingAlgorithm.BubbleSort:
-        return "Bubble sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. O(n^2) average time complexity.";
+        return (
+          <>
+            <p>
+              <strong>Bubble Sort - O(n^2) average time complexity.</strong>
+            </p>
+            <p>
+              Bubble sort repeatedly iterates over a list from left to right. At
+              each value a comparison is made - if the current value is greater
+              than the next value, their positions are swapped. This results in
+              the largest value moving to the end of the unsorted list in each
+              iteration.
+            </p>
+          </>
+        );
       case SortingAlgorithm.InsertionSort:
-        return "Insertion sort creates a sorted output list at the start of the array. At each iteration, insertion sort removes one element from the unsorted list, and traverses down the sorted list to find a location for the item. It repeats until no unsorted elements remain. O(n^2) average time complexity.";
+        return (
+          <>
+            <p>
+              <strong>Insertion Sort - O(n^2) average time complexity.</strong>
+            </p>
+            <p>
+              Insertion sort designates a sorted output list at the start of the
+              list. To begin with this is just the first value in the unsorted
+              list. The algorithm then iterates over the unsorted list. At each
+              iteration, it removes one element from the list, and traverses
+              down the sorted list to find a location for the item. It repeats,
+              building up a sorted list of values on the left hand side, until
+              no unsorted elements remain.
+            </p>
+          </>
+        );
       case SortingAlgorithm.SelectionSort:
-        return "Selection sort splits the list in to a sorted list and an unsorted list. Initially, the sorted list is empty. The algorithm repeatedly iterates over the unsorted list, in each iteration storing the index of the smallest value. At the end of the iteration, the smallest value will be swapped with the first item in the unsorted list. O(n^2) average time complexity.";
+        return (
+          <>
+            <p>
+              <strong>Selection Sort - O(n^2) average time complexity.</strong>
+            </p>
+            <p>
+              Selection sort splits the list in to a sorted list and an unsorted
+              list. Initially, the sorted list is empty. The algorithm
+              repeatedly iterates over the unsorted list, in each iteration
+              storing the index of the smallest value. At the end of the
+              iteration, the smallest value will be swapped with the first item
+              in the unsorted list. This builds up a sorted list of ascending
+              value on the left hand side.
+            </p>
+          </>
+        );
+    }
+  };
+
+  const isAlgoDisabled = (key: SortingAlgorithm) => {
+    switch (key) {
+      case SortingAlgorithm.MergeSort:
+      case SortingAlgorithm.QuickSort:
+      case SortingAlgorithm.HeapSort:
+      case SortingAlgorithm.RadixSort:
+      case SortingAlgorithm.BogoSort:
+        return true;
+      default:
+        return false;
     }
   };
 
@@ -103,9 +159,13 @@ const App = () => {
             }}
             disabled={inProgress}
           >
-            {Object.values(SortingAlgorithm).map((w) => (
-              <option key={w} value={w}>
-                {w}
+            {Object.values(SortingAlgorithm).map((value) => (
+              <option
+                key={value}
+                value={value}
+                disabled={isAlgoDisabled(value)}
+              >
+                {value}
               </option>
             ))}
           </S.Select>
