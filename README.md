@@ -7,5 +7,6 @@ This is a visualisation tool built with React.js to show some common sorting alg
 - [Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort)
 - [Selection Sort](https://en.wikipedia.org/wiki/Selection_sort)
 - [Insertion Sort](https://en.wikipedia.org/wiki/Insertion_sort)
+- [Quick Sort](https://en.wikipedia.org/wiki/Quicksort)
 
 [Link to the algorithms visualiser](https://seanbarry.github.io/sorting-algorithms/)
