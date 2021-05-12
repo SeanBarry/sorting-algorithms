@@ -190,10 +190,22 @@ export const Rows = styled.div`
 `;
 
 export const Description = styled.div`
-  font-size: 16px;
-  font-family: sans-serif;
-  line-height: 1.8;
-  padding: 30px;
+  padding: 30px 30px 10px 30px;
   align-self: flex-start;
   justify-content: center;
+  margin: 0px;
+`;
+
+type PProps = {
+  small?: boolean;
+};
+
+export const P = styled.p<PProps>`
+  font-size: ${({ small }) => (small ? "12px" : "16px")};
+  font-family: sans-serif;
+  line-height: 1.8;
+`;
+
+export const Highlight = styled.span`
+  color: ${SECONDARY};
 `;
