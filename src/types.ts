@@ -3,9 +3,9 @@ export enum SortingAlgorithm {
   InsertionSort = "Insertion Sort",
   SelectionSort = "Selection Sort",
   QuickSort = "Quick Sort",
+  RadixSort = "Radix Sort",
   MergeSort = "Merge Sort (Coming soon)",
   HeapSort = "Heap Sort (Coming soon)",
-  RadixSort = "Radix Sort (Coming soon)",
   BogoSort = "Bogo Sort (Coming soon)",
 }
 
