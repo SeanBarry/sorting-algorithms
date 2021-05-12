@@ -8,5 +8,6 @@ This is a visualisation tool built with React.js to show some common sorting alg
 - [Selection Sort](https://en.wikipedia.org/wiki/Selection_sort)
 - [Insertion Sort](https://en.wikipedia.org/wiki/Insertion_sort)
 - [Quick Sort](https://en.wikipedia.org/wiki/Quicksort)
+- [Radix Sort](https://en.wikipedia.org/wiki/Radix_sort)
 
 [Link to the algorithms visualiser](https://seanbarry.github.io/sorting-algorithms/)
