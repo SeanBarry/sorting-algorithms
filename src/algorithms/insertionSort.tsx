@@ -2,6 +2,7 @@ import { ELEMENT_COLOURS, setColour, sleep, swap } from "../utils";
 
 import { ArrayItem } from "../types";
 import { MAX_SPEED } from "../constants";
+import { P } from "../App.styles";
 
 export const insertionSort = async (
   array: Array<ArrayItem>,
@@ -33,3 +34,19 @@ export const insertionSort = async (
 
   setArray(array.map((w) => ({ ...w, colour: ELEMENT_COLOURS.SORTED })));
 };
+
+export const insertionSortDescription = (
+  <>
+    <P>
+      <strong>Insertion Sort - O(N^2) average time complexity.</strong>
+    </P>
+    <P>
+      Insertion sort designates a sorted output list at the start of the list.
+      To begin with this is just the first value in the unsorted list. The
+      algorithm then iterates over the unsorted list. At each iteration, it
+      removes one element from the list, and traverses down the sorted list to
+      find a location for the item. It repeats, building up a sorted list of
+      values on the left hand side, until no unsorted elements remain.
+    </P>
+  </>
+);

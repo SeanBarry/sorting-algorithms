@@ -2,6 +2,7 @@ import { ELEMENT_COLOURS, setColour, sleep, swap } from "../utils";
 
 import { ArrayItem } from "../types";
 import { MAX_SPEED } from "../constants";
+import { P } from "../App.styles";
 
 export const bubbleSort = async (
   array: Array<ArrayItem>,
@@ -39,3 +40,17 @@ export const bubbleSort = async (
 
   setArray(array.map((w) => ({ ...w, colour: ELEMENT_COLOURS.SORTED })));
 };
+
+export const bubbleSortDescription = (
+  <>
+    <P>
+      <strong>Bubble Sort - O(N^2) average time complexity.</strong>
+    </P>
+    <P>
+      Bubble sort repeatedly iterates over a list from left to right. At each
+      value a comparison is made - if the current value is greater than the next
+      value, their positions are swapped. This results in the largest value
+      moving to the end of the unsorted list in each iteration.
+    </P>
+  </>
+);

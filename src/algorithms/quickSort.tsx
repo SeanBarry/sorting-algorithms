@@ -2,6 +2,7 @@ import { ELEMENT_COLOURS, setColour, sleep, swap } from "../utils";
 
 import { ArrayItem } from "../types";
 import { MAX_SPEED } from "../constants";
+import { P } from "../App.styles";
 
 export const quickSort = async (
   array: Array<ArrayItem>,
@@ -81,3 +82,22 @@ const quickSortHelper = async (
     await quickSortHelper(array, startIdx, rightIdx - 1, setArray, speed);
   }
 };
+
+export const quickSortDescription = (
+  <>
+    <P>
+      <strong>Quick Sort - O(N(log(N))) average time complexity.</strong>
+    </P>
+    <P>
+      Quick sort creates a pivot index in the list. In this example, the pivot
+      is always the first element. It then iterates over the list, reodering
+      elements by swapping the positions of elements that have a lower value
+      than the pivot with values that are greater than the pivot's value.
+      Eventually a point is reached where all values before are less than the
+      pivot, and all values after are greater than the pivot. The pivot then
+      swaps positions to this point, and it is in its final sorted position. The
+      algorithm is then recursively applied to both remaining lists on each side
+      of the pivot, beginning with whichever is the smallest.
+    </P>
+  </>
+);
