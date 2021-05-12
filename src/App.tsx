@@ -4,9 +4,15 @@ import { ArrayItem, SortingAlgorithm } from "./types";
 import { MAX_ARRAY_SIZE, MAX_SPEED } from "./constants";
 import {
   bubbleSort,
+  bubbleSortDescription,
   insertionSort,
+  insertionSortDescription,
   quickSort,
+  quickSortDescription,
+  radixSort,
+  radixSortDescription,
   selectionSort,
+  selectionSortDescription,
 } from "./algorithms";
 import { createArrayItem, shuffle } from "./utils";
 import { useEffect, useRef, useState } from "react";
@@ -59,6 +65,9 @@ const App = () => {
       case SortingAlgorithm.QuickSort:
         await quickSort(array, setArray, sortSpeed);
         break;
+      case SortingAlgorithm.RadixSort:
+        await radixSort(array, setArray, sortSpeed);
+        break;
     }
 
     setInProgress(false);
@@ -75,76 +84,15 @@ const App = () => {
   const getAlgorithmDescription = () => {
     switch (sortingAlgorithm) {
       case SortingAlgorithm.BubbleSort:
-        return (
-          <>
-            <p>
-              <strong>Bubble Sort - O(N^2) average time complexity.</strong>
-            </p>
-            <p>
-              Bubble sort repeatedly iterates over a list from left to right. At
-              each value a comparison is made - if the current value is greater
-              than the next value, their positions are swapped. This results in
-              the largest value moving to the end of the unsorted list in each
-              iteration.
-            </p>
-          </>
-        );
+        return bubbleSortDescription;
       case SortingAlgorithm.InsertionSort:
-        return (
-          <>
-            <p>
-              <strong>Insertion Sort - O(N^2) average time complexity.</strong>
-            </p>
-            <p>
-              Insertion sort designates a sorted output list at the start of the
-              list. To begin with this is just the first value in the unsorted
-              list. The algorithm then iterates over the unsorted list. At each
-              iteration, it removes one element from the list, and traverses
-              down the sorted list to find a location for the item. It repeats,
-              building up a sorted list of values on the left hand side, until
-              no unsorted elements remain.
-            </p>
-          </>
-        );
+        return insertionSortDescription;
       case SortingAlgorithm.SelectionSort:
-        return (
-          <>
-            <p>
-              <strong>Selection Sort - O(N^2) average time complexity.</strong>
-            </p>
-            <p>
-              Selection sort splits the list in to a sorted list and an unsorted
-              list. Initially, the sorted list is empty. The algorithm
-              repeatedly iterates over the unsorted list, in each iteration
-              storing the index of the smallest value. At the end of the
-              iteration, the smallest value will be swapped with the first item
-              in the unsorted list. This builds up a sorted list of ascending
-              value on the left hand side.
-            </p>
-          </>
-        );
+        return selectionSortDescription;
       case SortingAlgorithm.QuickSort:
-        return (
-          <>
-            <p>
-              <strong>
-                Quick Sort - O(N(log(N))) average time complexity.
-              </strong>
-            </p>
-            <p>
-              Quick sort creates a pivot index in the list. In this example, the
-              pivot is always the first element. It then iterates over the list,
-              reodering elements by swapping the positions of elements that have
-              a lower value than the pivot with values that are greater than the
-              pivot's value. Eventually a point is reached where all values
-              before are less than the pivot, and all values after are greater
-              than the pivot. The pivot then swaps positions to this point, and
-              it is in its final sorted position. The algorithm is then
-              recursively applied to both remaining lists on each side of the
-              pivot, beginning with whichever is the smallest.
-            </p>
-          </>
-        );
+        return quickSortDescription;
+      case SortingAlgorithm.RadixSort:
+        return radixSortDescription;
     }
   };
 
@@ -152,7 +100,6 @@ const App = () => {
     switch (key) {
       case SortingAlgorithm.MergeSort:
       case SortingAlgorithm.HeapSort:
-      case SortingAlgorithm.RadixSort:
       case SortingAlgorithm.BogoSort:
         return true;
       default:
@@ -166,11 +113,34 @@ const App = () => {
       <S.Wrapper>
         <S.Rows>
           <S.ArrayWrapper ref={mainContentWidth}>
-            {array.map((w) => (
-              <S.ArrayElement key={w.value} element={w} />
+            {array.map((w, idx) => (
+              <div
+                style={{
+                  width: `${S.BAR_WIDTH}px`,
+                  marginLeft: `${S.BAR_SPACE}px`,
+                  color: "transparent",
+                  display: "inline-block",
+                  height: `${w.value * 3}px`,
+                  backgroundColor: w.colour,
+                }}
+                key={idx}
+              />
             ))}
           </S.ArrayWrapper>
-          <S.Description>{getAlgorithmDescription()}</S.Description>
+          <S.Description>
+            <>
+              {getAlgorithmDescription()}
+              <S.P small>
+                <strong>
+                  <em>Note: </em>
+                </strong>
+                Don't infer the speed of each algorithm based on the speed of
+                the visualisation. In order for the visualisations to show the
+                individual steps in the algorithms, some may have been slowed
+                down more than others.
+              </S.P>
+            </>
+          </S.Description>
         </S.Rows>
         <S.ToolBar>
           <S.Select
